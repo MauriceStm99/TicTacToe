@@ -7,9 +7,14 @@
     <title>TicTacToe</title>
 </head>
 <body onload="init()">
-    <div>
+    <div class="wrapper">
         <h1>Tic-Tac-Toe</h1>
         <div id="content"></div>
+        <div id="winner-text" class="winner-text"></div>
+        <div id="turn-indicator" class="turn-indicator"></div>
+        <div class="button-container">
+            <button class="button" onclick="restartGame()"><span>Neustart</span></button>
+        </div>
     </div>
 
     <script src="./script.js"></script>

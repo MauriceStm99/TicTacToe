@@ -4,6 +4,7 @@ let gameOver = false;
 
 function init() {
     render();
+    updateTurnIndicator();
 }
 
 function render() {
@@ -47,6 +48,24 @@ function handleClick(index, tdElement) {
     if (winnerData) {
         gameOver = true;
         drawWinLine(winnerData.combination);
+        showWinnerText(winnerData.winner);
+    } else if (fields.every(f => f !== null)) {
+        gameOver = true;
+        showWinnerText('draw');
+    }
+    if (!gameOver) {
+        updateTurnIndicator();
+    }
+}
+
+function showWinnerText(winner) {
+    const winnerText = document.getElementById('winner-text');
+    if (winner === 'circle') {
+        winnerText.textContent = 'Kreis gewinnt!';
+    } else if (winner === 'cross') {
+        winnerText.textContent = 'Kreuz gewinnt!';
+    } else {
+        winnerText.textContent = 'Unentschieden!';
     }
 }
 
@@ -72,6 +91,39 @@ function checkWinner() {
     return null; //Wenn keine der Kombinationen passt, gibt die Funktion null zurück → also noch kein Gewinner.
 }
 
+function restartGame() {
+    fields = Array(9).fill(null);
+    currentShape = 'circle';
+    gameOver = false;
+
+    // SVG-Gewinnlinie entfernen
+    const winLineContainer = document.getElementById('win-line-container');
+    if (winLineContainer) {
+        winLineContainer.remove();
+    }
+
+    // Gewinner-Text zurücksetzen
+    document.getElementById('winner-text').textContent = '';
+
+    // Spiel neu rendern
+    render();
+    updateTurnIndicator();
+}
+
+function updateTurnIndicator() {
+    const indicator = document.getElementById('turn-indicator');
+    if (!gameOver) {
+        if (currentShape === 'circle') {
+            indicator.textContent = 'Kreis ist am Zug';
+        } else {
+            indicator.textContent = 'Kreuz ist am Zug';
+        }
+    } else {
+        indicator.textContent = '';
+    }
+}
+
+
 function drawWinLine(combination) {
     const td0 = document.getElementById(`cell-${combination[0]}`);
     const td2 = document.getElementById(`cell-${combination[2]}`);
@@ -87,6 +139,7 @@ function drawWinLine(combination) {
     const length = Math.hypot(centerX2 - centerX1, centerY2 - centerY1);
 
     const container = document.createElement('div');
+    container.id = 'win-line-container';
     container.style.position = 'fixed';
     container.style.top = '0';
     container.style.left = '0';
