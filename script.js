@@ -63,13 +63,13 @@ const winningCombinations = [
 ];
 
 function checkWinner() {
-    for (let combo of winningCombinations) {
+    for (let combo of winningCombinations) { //Die Funktion geht durch alle möglichen Gewinnkombinationen
         const [a, b, c] = combo;
-        if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
-            return { winner: fields[a], combination: combo };
+        if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) { //fields[a] === fields[b] === fields[c] → alle drei Felder müssen dasselbe Symbol enthalten ('circle' oder 'cross').
+            return { winner: fields[a], combination: combo }; //Wenn eine Gewinnlinie gefunden wurde, gibt die Funktion ein Objekt zurück
         }
     }
-    return null;
+    return null; //Wenn keine der Kombinationen passt, gibt die Funktion null zurück → also noch kein Gewinner.
 }
 
 function drawWinLine(combination) {
