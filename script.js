@@ -183,7 +183,7 @@ function drawWinLine(combination) {
 // Animiertes SVG für Erst-Rendering
 function generateAnimatedCircleSVG() {
     return `
-    <svg width="120" height="120" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+    <svg class="svg-circle" width="110" height="110" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
         <circle
             cx="35"
             cy="35"
@@ -201,7 +201,7 @@ function generateAnimatedCircleSVG() {
 
 function generateAnimatedCrossSVG() {
     return `
-    <svg width="140" height="140" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+    <svg class="svg-cross" width="140" height="140" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
         <line x1="15" y1="15" x2="55" y2="55" stroke="#FFC000" stroke-width="5" stroke-dasharray="56.57" stroke-dashoffset="56.57">
             <animate attributeName="stroke-dashoffset" from="56.57" to="0" dur="0.5s" fill="freeze" />
         </line>
@@ -214,7 +214,7 @@ function generateAnimatedCrossSVG() {
 // Statische SVGs für Klick-Einsatz (ohne Animation)
 function generateCircleSVG() {
     return `
-    <svg width="120" height="120" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+    <svg class="svg-circle" width="110" height="110" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
         <circle
             cx="35"
             cy="35"
@@ -228,7 +228,7 @@ function generateCircleSVG() {
 
 function generateCrossSVG() {
     return `
-    <svg width="140" height="140" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+    <svg class="svg-cross" width="140" height="140" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
         <line x1="15" y1="15" x2="55" y2="55" stroke="#FFC000" stroke-width="5" />
         <line x1="55" y1="15" x2="15" y2="55" stroke="#FFC000" stroke-width="5" />
     </svg>`.trim();
